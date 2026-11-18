@@ -1,10 +1,643 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Nav Web Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navanath Yenpure | SRE & Cloud Architect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #08111f;
+    --card: #111e30;
+    --blue: #38bdf8;
+    --purple: #818cf8;
+    --text: #e5edf7;
+    --muted: #9aabc0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,17,31,.92);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    border-bottom: 1px solid #24344a;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--blue);
+}
+
+nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    padding: 90px 10%;
+    background:
+    radial-gradient(circle at 85% 25%, #1e3a8a55, transparent 35%),
+    radial-gradient(circle at 10% 80%, #0e749055, transparent 35%);
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #38bdf855;
+    border-radius: 30px;
+    color: var(--blue);
+    font-size: 13px;
+    margin-bottom: 25px;
+    background: #38bdf811;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    font-size: 21px;
+    color: #c5d5e8;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 750px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.location {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 13px 25px;
+    background: linear-gradient(90deg, #0284c7, #6366f1);
+    border-radius: 7px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px #0284c755;
+}
+
+section {
+    padding: 85px 10%;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.section-title span {
+    color: var(--blue);
+}
+
+.section-subtitle {
+    color: var(--muted);
+    margin-bottom: 38px;
+}
+
+.about {
+    background: #0b1728;
+}
+
+.about-box {
+    background: var(--card);
+    border: 1px solid #263b55;
+    border-radius: 14px;
+    padding: 35px;
+    color: #c2d0e0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.stat {
+    background: #16263c;
+    padding: 22px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 30px;
+    color: var(--blue);
+}
+
+.stat p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid #263b55;
+    padding: 28px;
+    border-radius: 13px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--blue);
+    box-shadow: 0 12px 30px #0005;
+}
+
+.card .icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--blue);
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.expertise {
+    background: #0b1728;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill {
+    padding: 11px 18px;
+    border: 1px solid #344b67;
+    border-radius: 7px;
+    background: #14243a;
+    color: #c9d8e9;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.skill:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.certification {
+    background: linear-gradient(120deg, #11233c, #101a35);
+    border: 1px solid #334968;
+    border-radius: 14px;
+    padding: 35px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.cert {
+    padding: 22px;
+    border-radius: 10px;
+    background: #1b2d47;
+    text-align: center;
+}
+
+.cert h3 {
+    color: var(--blue);
+    font-size: 16px;
+}
+
+.cert p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.contact {
+    text-align: center;
+    background:
+    radial-gradient(circle at center, #1e3a8a44, transparent 60%);
+}
+
+.contact p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #060d17;
+    border-top: 1px solid #24344a;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+@media(max-width:850px) {
+    nav {
+        padding: 15px 5%;
+    }
+    nav ul {
+        gap: 12px;
+    }
+    nav a {
+        font-size: 11px;
+    }
+    .grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px) {
+    nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero {
+        padding: 75px 7%;
+        min-height: 550px;
+    }
+    section {
+        padding: 65px 7%;
+    }
+    .grid, .stats, .certification {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 27px;
+    }
+}
+</style>
 </head>
+
 <body>
-  <h1>Hello, Everyone!</h1>
-  <p>My first site is live on GitHub Pages.</p>
+
+<nav>
+    <div class="logo">NY.</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">IT INFRASTRUCTURE • SRE • CLOUD ARCHITECT</div>
+
+        <h1>Navanath <span>Yenpure</span></h1>
+
+        <h2>
+            IT Infrastructure SRE | Cloud & DevOps Architect
+        </h2>
+
+        <p>
+            18+ years of experience in OS and Cloud Solutions,
+            Enterprise Migration, Site Reliability Engineering,
+            DevOps Automation and Hybrid Cloud Architecture.
+            Driving innovation, scalability and operational excellence.
+        </p>
+
+        <div class="location">
+            📍 Pune Division, Maharashtra, India
+        </div>
+
+        <a href="#about" class="btn">Explore My Profile →</a>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2 class="section-title">Professional <span>Overview</span></h2>
+    <p class="section-subtitle">
+        Engineering reliable, scalable and future-ready infrastructure.
+    </p>
+
+    <div class="about-box">
+        I am an IT Infrastructure and Site Reliability Engineering
+        professional with over 18 years of experience across
+        operating systems, enterprise infrastructure, cloud solutions,
+        migrations and DevOps transformation.
+
+        <br><br>
+
+        My focus is on building resilient technology ecosystems,
+        modernizing enterprise infrastructure, enabling automation
+        and aligning technology strategy with business objectives.
+
+        I bring together technical architecture, operational
+        excellence, strategic thinking and collaborative leadership
+        to deliver sustainable business outcomes.
+
+        <div class="stats">
+            <div class="stat">
+                <h3>18+</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat">
+                <h3>SRE</h3>
+                <p>Reliability Engineering</p>
+            </div>
+            <div class="stat">
+                <h3>Cloud</h3>
+                <p>Hybrid Cloud Solutions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+    <h2 class="section-title">Core <span>Expertise</span></h2>
+    <p class="section-subtitle">
+        Strategic capabilities and engineering excellence.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🏗️</div>
+            <h3>Technical Leadership & Architecture</h3>
+            <p>
+                Design scalable, maintainable and sustainable
+                enterprise architectures aligned with business goals
+                and future technology requirements.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">☁️</div>
+            <h3>Cloud & Hybrid Infrastructure</h3>
+            <p>
+                Architect cloud-native and hybrid infrastructure
+                solutions with a focus on performance, availability,
+                security and operational efficiency.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔄</div>
+            <h3>Enterprise Migration</h3>
+            <p>
+                Lead end-to-end migration strategies, roadmaps,
+                resource planning and execution with minimal
+                business disruption.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>DevOps & Automation</h3>
+            <p>
+                Build automated CI/CD pipelines, infrastructure
+                as code and operational workflows to accelerate
+                reliable software delivery.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>Site Reliability Engineering</h3>
+            <p>
+                Drive SLOs, SLIs, error budgets, observability,
+                incident management and proactive reliability
+                engineering practices.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Innovation & Transformation</h3>
+            <p>
+                Introduce chaos engineering, automated remediation,
+                infrastructure optimization and modern engineering
+                practices.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="expertise" id="leadership">
+    <h2 class="section-title">Strategic <span>Leadership</span></h2>
+    <p class="section-subtitle">
+        Transforming technology vision into measurable outcomes.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Strategic Alignment & Vision</h3>
+            <p>
+                Align technical roadmaps with business objectives,
+                anticipate emerging trends and drive long-term
+                technology transformation.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Cross-Functional Collaboration</h3>
+            <p>
+                Partner with business leaders, product managers,
+                engineers and operations teams to deliver resilient
+                and performance-driven solutions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Leadership & Mentoring</h3>
+            <p>
+                Build high-performing teams, mentor engineering
+                professionals and foster a culture of ownership,
+                inclusion and continuous learning.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Innovation & Engineering Excellence</h3>
+            <p>
+                Champion automation, chaos engineering, resilience
+                reviews and continuous improvement across
+                engineering workflows.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Project Governance</h3>
+            <p>
+                Manage migration budgets, delivery timelines,
+                resource allocation, risks and project execution
+                while maintaining business continuity.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Operational Excellence</h3>
+            <p>
+                Improve service availability, optimize infrastructure
+                performance and strengthen incident response
+                and operational efficiency.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section>
+    <h2 class="section-title">Technology <span>Landscape</span></h2>
+    <p class="section-subtitle">
+        Areas of technical expertise and professional focus.
+    </p>
+
+    <div class="skills">
+        <span class="skill">Microsoft Azure</span>
+        <span class="skill">Amazon Web Services</span>
+        <span class="skill">Hybrid Cloud</span>
+        <span class="skill">Windows Server</span>
+        <span class="skill">Linux / Unix</span>
+        <span class="skill">Site Reliability Engineering</span>
+        <span class="skill">DevOps</span>
+        <span class="skill">CI/CD Automation</span>
+        <span class="skill">Infrastructure as Code</span>
+        <span class="skill">Cloud Migration</span>
+        <span class="skill">Monitoring & Observability</span>
+        <span class="skill">Incident Management</span>
+        <span class="skill">SLO / SLI / Error Budgets</span>
+        <span class="skill">Chaos Engineering</span>
+        <span class="skill">Automated Remediation</span>
+        <span class="skill">Enterprise Architecture</span>
+    </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="expertise" id="certifications">
+    <h2 class="section-title">Professional <span>Certifications</span></h2>
+    <p class="section-subtitle">
+        Professional credentials and cloud technology expertise.
+    </p>
+
+    <div class="certification">
+        <div class="cert">
+            <h3>Microsoft MCSA</h3>
+            <p>Microsoft Certified Solutions Associate</p>
+        </div>
+
+        <div class="cert">
+            <h3>Microsoft Azure</h3>
+            <p>Azure Certified</p>
+        </div>
+
+        <div class="cert">
+            <h3>Amazon AWS</h3>
+            <p>AWS Certified</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+    <h2 class="section-title">
+        Let's Build the <span>Future</span>
+    </h2>
+
+    <p>
+        Passionate about infrastructure transformation,
+        cloud innovation, reliability engineering and
+        building technology solutions that create business impact.
+        Always open to connecting with technology leaders
+        and engineering professionals.
+    </p>
+
+    <a href="https://www.linkedin.com/" target="_blank"
+       rel="noopener noreferrer" class="btn">
+       Connect on LinkedIn →
+    </a>
+</section>
+
+<footer>
+    © 2026 Navanath Yenpure. All Rights Reserved.
+    <br>
+    IT Infrastructure SRE | Cloud & DevOps Architect
+</footer>
+
 </body>
 </html>
